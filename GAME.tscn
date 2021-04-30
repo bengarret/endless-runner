@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://BACKBACKGROUND.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Spawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Score.gd" type="Script" id=5]
+[ext_resource path="res://GAME.gd" type="Script" id=6]
+[ext_resource path="res://bone collector2.ogg" type="AudioStream" id=7]
+[ext_resource path="res://AudioPlayer.gd" type="Script" id=8]
+[ext_resource path="res://BarrelPlayer.gd" type="Script" id=9]
+
+[sub_resource type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[node name="GAME" type="Node2D"]
+position = Vector2( 7.07108, 18.3848 )
+script = ExtResource( 6 )
+
+[node name="TextureRect" parent="." instance=ExtResource( 2 )]
+material = SubResource( 2 )
+margin_left = -9.89951
+margin_top = 303.444
+margin_right = 30.1005
+margin_bottom = 343.444
+rect_scale = Vector2( 1.03866, 1 )
+
+[node name="TextureRect2" parent="." instance=ExtResource( 1 )]
+margin_left = -6.42642
+margin_top = -16.7574
+margin_right = 73.5736
+margin_bottom = 23.2426
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 5.72787, 330.444 )
+
+[node name="Spawner" parent="." instance=ExtResource( 4 )]
+position = Vector2( 660, 294.858 )
+
+[node name="Timer2" type="Timer" parent="Spawner"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+margin_left = 667.071
+margin_top = 327.385
+margin_right = 707.071
+margin_bottom = 367.385
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreText" type="Label" parent="CanvasLayer/UI"]
+anchor_left = 20.0
+anchor_right = 20.0
+margin_left = -1433.0
+margin_top = -312.0
+margin_right = -1393.0
+margin_bottom = -297.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="BarrelPlayer" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 9 )
+[connection signal="timeout" from="Spawner/Timer2" to="Spawner" method="_on_Timer2_timeout"]

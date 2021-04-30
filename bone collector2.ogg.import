@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bone collector2.ogg-6038076ca9e639854dc09dde3ab02400.oggstr"
+
+[deps]
+
+source_file="res://bone collector2.ogg"
+dest_files=[ "res://.import/bone collector2.ogg-6038076ca9e639854dc09dde3ab02400.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

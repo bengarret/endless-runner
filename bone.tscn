@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://BONE.png" type="Texture" id=1]
+[ext_resource path="res://PICKUP.tscn" type="PackedScene" id=2]
+[ext_resource path="res://bonebehavior.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="PICKUP" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PICKUP"]
+position = Vector2( -9.89949, -19.0919 )
+shape = SubResource( 1 )
+
+[node name="BONE" type="Sprite" parent="."]
+position = Vector2( -12, -20.33 )
+texture = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]
+[connection signal="body_entered" from="PICKUP" to="." method="_on_PICKUP_body_entered"]

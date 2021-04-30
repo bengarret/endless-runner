@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://BARREL.png" type="Texture" id=1]
+[ext_resource path="res://OBSTACLE.tscn" type="PackedScene" id=2]
+[ext_resource path="res://barrelbehavior.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.23224, 10 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="OBSTACLE" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OBSTACLE"]
+position = Vector2( -20.7678, -5.53033 )
+shape = SubResource( 1 )
+
+[node name="BARREL" type="Sprite" parent="."]
+position = Vector2( -21, -6.33003 )
+texture = ExtResource( 1 )
+[connection signal="body_entered" from="OBSTACLE" to="." method="_on_OBSTACLE_body_entered"]
